@@ -1,7 +1,16 @@
+from fastapi import FastAPI
 from supabase import create_client
 from retrieval.hybrid_retrieval import hybrid_search
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    query = input("Enter your search")
-    hybrid_result = hybrid_search(query, limit=5)
+@app.get("/search")
+def search(query: str, limit: int = 10, offset: int = 0):
+    results, total_candidates = hybrid_search(query, limit=limit + offset, pool_size=100)
+    paginated = results[offset:offset + limit]
+    return {
+        "results": paginated,
+        "limit": limit,
+        "offset": offset,
+        "total": total_candidates
+    }

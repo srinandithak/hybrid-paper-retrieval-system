@@ -102,16 +102,16 @@ if __name__ == "__main__":
     supabase = get_supabase_client()
     openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     
-papers = fetch_papers("computer vision object detection", max_results=50)
-    
-for p in papers:
-    if paper_exists(supabase, p["id"]):
-        print(f"Skipping (exists): {p['title']}")
-        continue
-    
-    store_paper(supabase, p)
-    embedding = generate_embedding(openai_client, p["abstract"])
-    store_embedding(supabase, p["id"], embedding)
-    extraction = extract_structure(openai_client, p["abstract"])
-    store_extraction(supabase, p["id"], extraction)
-    print(f"Done: {p['title']}")
+    papers = fetch_papers("computer vision object detection", max_results=50)
+        
+    for p in papers:
+        if paper_exists(supabase, p["id"]):
+            print(f"Skipping (exists): {p['title']}")
+            continue
+        
+        store_paper(supabase, p)
+        embedding = generate_embedding(openai_client, p["abstract"])
+        store_embedding(supabase, p["id"], embedding)
+        extraction = extract_structure(openai_client, p["abstract"])
+        store_extraction(supabase, p["id"], extraction)
+        print(f"Done: {p['title']}")
