@@ -1,5 +1,6 @@
-from fastapi import FastAPI
 from retrieval.hybrid_retrieval import hybrid_search
+from fastapi import FastAPI
+
 from compare import generate_grounded_comparison
 
 app = FastAPI()
