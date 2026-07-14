@@ -9,7 +9,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",           # local Vite dev server
-        "https://hybrid-paper-retrieval-system.onrender.com/",     
+        "https://hybrid-paper-retrieval-system.vercel.app/",     
     ],
     allow_credentials=True,
     allow_methods=["*"],
