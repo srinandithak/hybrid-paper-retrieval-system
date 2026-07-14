@@ -1,9 +1,20 @@
-from retrieval.hybrid_retrieval import hybrid_search
 from fastapi import FastAPI
-
+from fastapi.middleware.cors import CORSMiddleware
+from retrieval.hybrid_retrieval import hybrid_search
 from compare import generate_grounded_comparison
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",           # local Vite dev server
+        "https://hybrid-paper-retrieval-system.onrender.com/",     
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/search")
 def search(query: str, limit: int = 10, offset: int = 0):
