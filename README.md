@@ -3,6 +3,7 @@
 A research paper search and comparison tool that combines semantic search and keyword search to find relevant papers, then uses an LLM to generate citation-grounded comparisons across them.
 
 **Live demo:** https://hybrid-paper-retrieval-system.vercel.app
+
 **Backend API:** https://hybrid-paper-retrieval-system.onrender.com/docs
 
 ## What it does
